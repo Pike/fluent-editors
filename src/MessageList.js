@@ -4,6 +4,13 @@ import EditableMessage from './EditableMessage';
 
 import './MessageList.css';
 
+/**
+ * MessageList
+ *
+ * Component rendering a list of messages with Message components,
+ * and a EditableMessage for the one referenced in `this.props.messageEditing`.
+ */
+
 class MessageList extends Component {
   render() {
     return (
