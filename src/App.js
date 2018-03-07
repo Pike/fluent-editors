@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import MessageList from './MessageList';
 
 import './App.css';
@@ -12,11 +11,11 @@ class App extends Component {
           <h1 className="App-title">Edit Fluent messages</h1>
         </header>
         <section className="App-body">
-          <MessageList messages={ this.props.messages } messageEditing={ this.props.messageEditing }/>
+          <MessageList file="example.ftl"/>
         </section>
       </div>
     );
   }
 }
 
-export default connect(({ messages, messageEditing }) => ({ messages, messageEditing }))(App);
+export default App;

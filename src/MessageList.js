@@ -1,6 +1,8 @@
+/* global fetch */
 import React, { Component } from 'react';
 import Message from './Message';
 import EditableMessage from './EditableMessage';
+import { parse } from 'fluent-syntax';
 
 import './MessageList.css';
 
@@ -12,6 +14,16 @@ import './MessageList.css';
  */
 
 class MessageList extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      messages: [],
+      messageEditing: 0
+    };
+  }
+
+
   render() {
     return (
       <div className="Message-list">
@@ -19,10 +31,20 @@ class MessageList extends Component {
       </div>
     );
   }
+  async componentDidMount() {
+    let response = await fetch(this.props.file);
+    let content = await response.text();
+    let resource = parse(content);
+    this.setState({
+      messages: resource.body.filter(entry=>entry.type==="Message"),
+      messageEditing: 0
+    });
+  }
+
   renderMessages() {
     let messages = [];
-    let messageEditing = this.props.messageEditing;
-    this.props.messages.forEach(function(msg, i) {
+    let messageEditing = this.state.messageEditing;
+    this.state.messages.forEach(function(msg, i) {
       let CurrentMessage = i===messageEditing ? EditableMessage : Message;
       let rv = <CurrentMessage key={i} message={msg} />;
       messages.push(rv);
