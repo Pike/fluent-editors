@@ -1,7 +1,7 @@
 Playground for Fluent Editors
 =============================
 
-This react-redux app should at some point help us play with different kinds
+This react app should at some point help us play with different kinds
 of Fluent editors.
 
 Basic structure is that `App` is the top-level component, which holds a
