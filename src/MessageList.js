@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import Message from './Message';
 import EditableMessage from './EditableMessage';
+import { createComponent } from './base/fluent';
 import { parse } from 'fluent-syntax';
 
 import './MessageList.css';
@@ -47,7 +48,7 @@ class MessageList extends Component {
     this.state.messages.forEach(function(msg, i) {
       let CurrentMessage = i===messageEditing ? EditableMessage : Message;
       let rv = <CurrentMessage key={i} message={msg} />;
-      messages.push(rv);
+      messages.push(createComponent(msg));
     });
     return messages;
   }

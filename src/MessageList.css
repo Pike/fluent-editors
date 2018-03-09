@@ -2,3 +2,35 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
+
+.Placeable:before {
+  content: "{ ";
+  font-family: "monospace";
+}
+
+.Placeable:after {
+  content: " }";
+  font-family: "monospace";
+}
+
+.ExternalArgument:before {
+  content: "$";
+}
+
+.SelectExpression > :first-child:after {
+  content: " -> ";
+  font-family: "monospace";
+  direction: ltr;
+}
+
+.Variant > :first-child:before {
+  content: "\a    [ ";
+  white-space: pre;
+}
+.Variant.Variant_default_true > :first-child:before {
+  content: "\a   *[ ";
+}
+.Variant > :first-child:after {
+  content : " ] ";
+  font-family: "monospace";
+}
