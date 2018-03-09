@@ -1,9 +1,16 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { shallow } from 'enzyme';
+import sinon from 'sinon';
 import App from './App';
+const Enzyme = require('enzyme');
+const Adapter = require('enzyme-adapter-react-16');
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
+Enzyme.configure({ adapter: new Adapter() });
+
+
+describe('<MyComponent />', () => {
+  it('should render one <MessageList /> component', () => {
+    const wrapper = shallow(<App />);
+    expect(wrapper.find('MessageList')).toHaveLength(1);
+  });
 });
