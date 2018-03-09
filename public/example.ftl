@@ -1,5 +1,7 @@
 # Try editing the translations here!
 
+-a-good-term = Vocabulary
+
 hello-world = Hello, world!
 
 shared-photos =

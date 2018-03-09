@@ -1,4 +1,4 @@
-.Message {
+.Message,.Term {
   display: grid;
   grid-template-columns: .5fr 1.5fr;
   padding-bottom: 10px;

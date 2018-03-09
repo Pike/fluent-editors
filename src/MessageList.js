@@ -37,7 +37,11 @@ class MessageList extends Component {
     let content = await response.text();
     let resource = parse(content);
     this.setState({
-      messages: resource.body.filter(entry=>entry.type==="Message"),
+      messages: resource.body.filter(
+        entry => (
+          entry.type === "Message" ||
+          entry.type === "Term"
+        )),
       messageEditing: 0
     });
   }
