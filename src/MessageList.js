@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Message from './Message';
 import EditableMessage from './EditableMessage';
 import { createComponent } from './base/fluent';
-import { parse } from 'fluent-syntax';
+import { parse } from 'fluent-syntax/compat';
 
 import './MessageList.css';
 
