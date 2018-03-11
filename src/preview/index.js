@@ -3,11 +3,24 @@
  * 
  * Simplifations:
  *  - Default variants for SelectExpressions
+ *  - Messages/Terms display value, or first attribute
  */
 
 import { Factory as BaseFactory } from "../base/index";
 import React, { Component } from "react";
 
+
+class DefaultMessage extends Component {
+    render() {
+        return (
+            <span className={ this.props.type }>
+            { this.props.factory_.createComponent(this.props.id, "id") }
+            { this.props.factory_.createComponent(this.props.value, "value") }
+            { this.props.value ? '' : this.props.factory_.createComponent(this.props.attributes[0], "attributes") }
+            </span>
+        );
+    }
+}
 
 class PlaceablePassThrough extends Component {
     render() {
@@ -34,6 +47,9 @@ class SelectExpressionPreview extends Component {
 export class Factory extends BaseFactory {
     getComponent(ast) {
         switch (ast.type) {
+            case "Message":
+            case "Term":
+                return DefaultMessage;
             case "SelectExpression":
                 return SelectExpressionPreview;
             case "Placeable":

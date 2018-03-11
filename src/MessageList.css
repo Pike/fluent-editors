@@ -10,6 +10,16 @@
   padding-bottom: 10px;
 }
 
+
+.Attribute {
+  grid-column-end: -1;
+}
+
+.Attribute > .Identifier:after {
+  content: " = "
+}
+
+
 .Placeable:before {
   content: "{ ";
   font-family: "monospace";
