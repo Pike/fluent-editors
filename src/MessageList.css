@@ -1,3 +1,9 @@
+.mode-selector {
+  padding-bottom: 1ex;
+  border-bottom: 1px solid black;
+  margin-bottom: 2ex;
+}
+
 .Message,.Term {
   display: grid;
   grid-template-columns: .5fr 1.5fr;
