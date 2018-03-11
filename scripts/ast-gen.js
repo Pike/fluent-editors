@@ -60,13 +60,11 @@ export class ${cname} extends Component {
         console.log(this.props);
         return (
             <span className={\`${cname}${ class_params.map(p => ` ${cname}_${p}_\${this.props.${p}}`) }\`}>
-            ${child_params.map(p => `{ createComponent(this.props.${p}, "${p}") }`).join("")}
+            ${child_params.map(p => `{ this.props.factory_.createComponent(this.props.${p}, "${p}") }`).join("")}
             </span>
         );
     }
 }
-
-mapping["${cname}"] = ${cname};
 
 `;
         
@@ -76,31 +74,6 @@ const header = `\
 // React components for Fluent AST
 
 import React, { Component } from 'react';
-
-export const mapping = {};
-
-export function createComponent(ast, prop) {
-    if (ast instanceof Array) {
-        return ast.map(createComponent);
-    }
-    if (typeof ast === "string") {
-        return <span className={prop}>{ast}</span>;
-    }
-    if (
-        !ast
-        || !('type' in ast)
-        || !(ast.type in mapping)
-    ) return '';
-    console.log('createComponent', ast.type);
-    const ASTNode = mapping[ast.type];
-    if ("key" in ast) {
-        // hack key -> key_
-        ast.key_ = ast.key;
-        delete(ast.key);
-    }
-    const key = ast.span.start;
-    return <ASTNode key={ key } {...ast} />;
-}
 
 `;
 

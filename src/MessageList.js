@@ -2,7 +2,8 @@
 import React, { Component } from 'react';
 import Message from './Message';
 import EditableMessage from './EditableMessage';
-import { createComponent } from './base/fluent';
+import { Factory } from './base/index';
+import * as AST from './base/fluent';
 import { parse } from 'fluent-syntax/compat';
 
 import './MessageList.css';
@@ -20,7 +21,8 @@ class MessageList extends Component {
     super(props);
     this.state = {
       messages: [],
-      messageEditing: 0
+      messageEditing: 0,
+      factory: new Factory(),
     };
   }
 
@@ -49,10 +51,8 @@ class MessageList extends Component {
   renderMessages() {
     let messages = [];
     let messageEditing = this.state.messageEditing;
-    this.state.messages.forEach(function(msg, i) {
-      let CurrentMessage = i===messageEditing ? EditableMessage : Message;
-      let rv = <CurrentMessage key={i} message={msg} />;
-      messages.push(createComponent(msg));
+    this.state.messages.forEach((msg, i) => {
+      messages.push(this.state.factory.createComponent(msg));
     });
     return messages;
   }
