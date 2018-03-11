@@ -23,17 +23,21 @@ class MessageList extends Component {
       preview: new PreviewFactory(),
       review: new ReviewFactory(),
     };
+    this.setMode = this.setMode.bind(this);
     this.state = {
       messages: [],
       mode: "review",
     };
   }
 
+  setMode(mode) {
+      this.setState({mode: mode});
+  }
 
   render() {
     return (
         <div>
-        <ModeList modes={Object.keys(this.modes)} mode = {this.state.mode} container={this} />
+        <RadioList className="mode-selector" modes={Object.keys(this.modes)} mode = {this.state.mode} onChange={this.setMode} />
       <div className="Message-list">
         {this.renderMessages()}
       </div>
@@ -64,18 +68,16 @@ class MessageList extends Component {
 }
 
 
-class ModeList extends Component {
+class RadioList extends Component {
     constructor(props) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
     }
     handleChange(event) {
-        this.props.container.setState({
-            mode: event.target.value
-        });
+        this.props.onChange(event.target.value);
     }
     render() {
-        return <div className="mode-selector">
+        return <div className={this.props.className}>
         {
             this.props.modes.map(mode => (
                 <span key={mode}><input name="mode" type="radio" value={mode} onChange={this.handleChange} checked={mode === this.props.mode} /><label>{mode}</label></span>
