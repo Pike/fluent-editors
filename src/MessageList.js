@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { Factory as ReviewFactory} from './base/index';
 import { Factory as PreviewFactory} from './preview/index';
+import { Factory as EditFactory} from './editing/index';
 import { parse } from 'fluent-syntax/compat';
 
 import './MessageList.css';
@@ -18,6 +19,7 @@ class MessageList extends Component {
   constructor(props) {
     super(props);
     this.modes = {
+      editing: new EditFactory(),
       preview: new PreviewFactory(),
       review: new ReviewFactory(),
     };
