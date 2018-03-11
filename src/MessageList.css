@@ -11,44 +11,56 @@
 }
 
 
-.Attribute {
+.attributes_group {
   grid-column-end: -1;
 }
-
+.Attribute {
+  display:block;
+}
 .Attribute > .Identifier:after {
   content: " = "
 }
 
 
-.Placeable:before {
+.Placeable > :first-child:before {
   content: "{ ";
-  font-family: "monospace";
+  font-family: monospace;
 }
 
 .Placeable:after {
   content: " }";
-  font-family: "monospace";
+  font-family: monospace;
 }
 
 .ExternalArgument:before {
   content: "$";
 }
+.ExternalArgument {
+  font-family: monospace;
+}
+
+.Placeable > .ExternalArgument:before {
+  content: "{ $";
+}
 
 .SelectExpression > :first-child:after {
   content: " -> ";
-  font-family: "monospace";
+  font-family: monospace;
   direction: ltr;
 }
 
+.Variant > :first-child {
+  font-family: monospace;
+}
 .Variant > :first-child:before {
   content: "\a    [";
   white-space: pre;
-  font-family: "monospace";
+  font-family: monospace;
 }
 .Variant.Variant_default_true > :first-child:before {
   content: "\a   *[";
 }
 .Variant > :first-child:after {
   content : "] ";
-  font-family: "monospace";
+  font-family: monospace;
 }

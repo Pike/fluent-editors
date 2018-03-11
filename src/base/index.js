@@ -22,7 +22,11 @@ export class Factory {
             return this.createString(ast, propertyName);
         }
         if (ast instanceof Array) {
-            return ast.map(node => this.createComponent(node, propertyName));
+            return (
+                <span className={ propertyName + "_group"}>
+                { ast.map(node => this.createComponent(node, propertyName)) }
+                </span>
+            );
         }
         if (!("type" in ast)) {
             throw "Incompatible Object, expected AST.type, Array, or String";
