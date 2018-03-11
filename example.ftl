@@ -1,6 +1,7 @@
 # Try editing the translations here!
 
 -a-good-term = Vocabulary
+    .gender = neutral
 
 hello-world = Hello, world!
 
@@ -17,3 +18,7 @@ liked-comment =
         [female] her
        *[other] their
     } post.
+
+xul-button =
+  .label = Press me
+  .accesskey = P
