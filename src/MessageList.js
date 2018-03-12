@@ -24,9 +24,11 @@ class MessageList extends Component {
       review: new ReviewFactory(),
     };
     this.setMode = this.setMode.bind(this);
+    this.setLayout = this.setLayout.bind(this);
     this.state = {
       messages: [],
       mode: "review",
+      layout: "syntax",
     };
   }
 
@@ -34,11 +36,16 @@ class MessageList extends Component {
       this.setState({mode: mode});
   }
 
+  setLayout(layout) {
+      this.setState({layout: layout});
+  }
+
   render() {
     return (
         <div>
-        <RadioList className="mode-selector" modes={Object.keys(this.modes)} mode = {this.state.mode} onChange={this.setMode} />
-      <div className="Message-list">
+        <RadioList className="mode-selector" choices={Object.keys(this.modes)} name="mode" selected = {this.state.mode} onChange={this.setMode} />
+        <RadioList className="mode-selector" choices={["syntax", "flowed"]} name="syntax" selected = {this.state.layout} onChange={this.setLayout} />
+      <div className={`Message-list ${this.state.layout}-layout`}>
         {this.renderMessages()}
       </div>
       </div>
@@ -79,8 +86,8 @@ class RadioList extends Component {
     render() {
         return <div className={this.props.className}>
         {
-            this.props.modes.map(mode => (
-                <span key={mode}><input name="mode" type="radio" value={mode} onChange={this.handleChange} checked={mode === this.props.mode} /><label>{mode}</label></span>
+            this.props.choices.map(choice => (
+                <span key={choice}><input name={this.props.name} type="radio" value={choice} onChange={this.handleChange} checked={choice === this.props.selected} /><label>{choice}</label></span>
             ))
         }
         </div>;

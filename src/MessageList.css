@@ -27,7 +27,7 @@
   font-family: monospace;
 }
 
-.Placeable:after {
+.Placeable >  :last-child:after {
   content: " }";
   font-family: monospace;
 }
@@ -39,13 +39,47 @@
   font-family: monospace;
 }
 
-.SelectExpression > :first-child:after {
+.flowed-layout .SelectExpression:before, .flowed-layout .SelectExpression:after {
+  content: "";
+}
+
+.flowed-layout .SelectExpression > :first-child {
+  border: 1px solid black;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.flowed-layout .variants_group {
+  display: inline-table;
+  vertical-align: middle;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  padding: 0 5px;
+  border-radius: 5px;
+  margin-left: 5px;
+}
+
+.flowed-layout .Variant {
+  display: table-row;
+}
+.flowed-layout .Variant > * {
+  display: table-cell;
+}
+.flowed-layout .Variant > :first-child {
+  text-align: right;
+}
+.flowed-layout .Variant > :first-child:after {
+  content: "-";
+  padding: 0 2px;
+}
+
+.syntax-layout .SelectExpression > :first-child:after {
   content: " -> ";
   font-family: monospace;
   direction: ltr;
 }
 
-.variants_group {
+.syntax-layout .variants_group {
   display: block;
   margin-left: 3ex;
 }
@@ -55,14 +89,14 @@
 .Variant > :first-child {
   font-family: monospace;
 }
-.Variant > :first-child:before {
+.syntax-layout .Variant > :first-child:before {
   content: "[";
 }
-.Variant.Variant_default_true > :first-child:before {
+.syntax-layout .Variant.Variant_default_true > :first-child:before {
   content: "*[";
   margin-left: -1ex;
 }
-.Variant > :first-child:after {
+.syntax-layout .Variant > :first-child:after {
   content : "] ";
   font-family: monospace;
 }
