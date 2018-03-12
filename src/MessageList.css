@@ -10,6 +10,9 @@
   padding-bottom: 10px;
 }
 
+.Identifier {
+  font-family: monospace;
+}
 
 .attributes_group {
   grid-column-end: -1;
@@ -99,4 +102,18 @@
 .syntax-layout .Variant > :first-child:after {
   content : "] ";
   font-family: monospace;
+}
+
+.args_group > :first-child:before {
+  content: "(";
+}
+.args_group > *:before {
+  content: ", "
+}
+.args_group > :last-child:after {
+  content: ")";
+}
+
+.NamedArgument > .Identifier:after {
+  content: "=";
 }
