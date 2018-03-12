@@ -22,3 +22,14 @@ liked-comment =
 xul-button =
   .label = Press me
   .accesskey = P
+
+# terms-effective = Effective { DATETIME($date, month: "long", year: "numeric", day: "numeric") }
+
+pretty-complex =
+    This { $one_count ->
+     [one] is simple
+    *[other] is pretty { $second_count ->
+     [one] trivial
+    *[other] darn complex
+    }
+    }
