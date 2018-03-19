@@ -23,7 +23,7 @@ xul-button =
   .label = Press me
   .accesskey = P
 
-# terms-effective = Effective { DATETIME($date, month: "long", year: "numeric", day: "numeric") }
+terms-effective = Effective { DATETIME($date, month: "long", year: "numeric", day: "numeric") }
 
 pretty-complex =
     This { $one_count ->
